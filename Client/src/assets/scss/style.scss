@@ -6,15 +6,15 @@
  *
  *  Structure (with shortcodes):
                  [1. Common ]
-                 [2. Fonts ]                   
-                 [3. Components ]       
-                 [4. Apps]                   
-                 [5. Pages ]    
-                 [6. Pugins ]        
-                 [7. UI ]     
-                 [8. Browser ]     
+                 [2. Fonts ]
+                 [3. Components ]
+                 [4. Apps]
+                 [5. Pages ]
+                 [6. Pugins ]
+                 [7. UI ]
+                 [8. Browser ]
 
-                
+
 /*                 [1. Common ]                   			*/
 /* Importing Bootstrap SCSS file. */
 @import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
@@ -27,6 +27,7 @@
 @include meta.load-css("common/_media.scss");
 @include meta.load-css("common/_animation.scss");
 @include meta.load-css("common/_rtl.scss");
+@import 'ngx-toastr/toastr';
 
 /*                 [2. Fonts]                   				*/
 // @import "fonts/_material.scss";

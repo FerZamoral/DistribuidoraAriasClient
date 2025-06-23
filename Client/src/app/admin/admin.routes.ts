@@ -6,5 +6,10 @@ export const ADMIN_ROUTE: Route[] = [
     loadChildren: () =>
       import('./dashboard/dashboard.routes').then((m) => m.ADMIN_DASHBOARD_ROUTE),
   },
+  {
+    path: 'empleados',
+    loadChildren: () =>
+      import('./employees/employees.routes').then((m) => m.ADMIN_EMPLOYEE_ROUTE),
+  }
 ];
 

@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { NotificacionService, TipoMessage } from '@shared/notification.service';
 @Component({
     selector: 'app-signin',
     templateUrl: './signin.component.html',
@@ -34,17 +35,20 @@ export class SigninComponent
     private formBuilder: UntypedFormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+     private noti: NotificacionService
+
   ) {
     super();
   }
 
-  ngOnInit() {
-    this.authForm = this.formBuilder.group({
-      username: ['admin@software.com', Validators.required],
-      password: ['admin@123', Validators.required],
-    });
+ ngOnInit() {
+  this.authForm = this.formBuilder.group({
+    email: ['fernanda123@gmail.com', Validators.required],
+    password: ['123567', Validators.required],
+  });
   }
+
   get f() {
     return this.authForm.controls;
   }
@@ -60,42 +64,71 @@ export class SigninComponent
     this.authForm.get('username')?.setValue('client@software.com');
     this.authForm.get('password')?.setValue('client@123');
   }
-  onSubmit() {
-    this.submitted = true;
-    this.loading = true;
-    this.error = '';
-    if (this.authForm.invalid) {
-      this.error = 'Username and Password not valid !';
-      return;
-    } else {
-      this.subs.sink = this.authService
-        .login(this.f['username'].value, this.f['password'].value)
-        .subscribe(
-          (res) => {
-            if (res) {
-              setTimeout(() => {
-                const role = this.authService.currentUserValue.role;
-                if (role === Role.All || role === Role.Admin) {
-                  this.router.navigate(['/admin/dashboard/main']);
-                } else if (role === Role.Employee) {
-                  this.router.navigate(['/employee/dashboard']);
-                } else if (role === Role.Client) {
-                  this.router.navigate(['/client/dashboard']);
-                } else {
-                  this.router.navigate(['/authentication/signin']);
-                }
-                this.loading = false;
-              }, 1000);
-            } else {
-              this.error = 'Invalid Login';
-            }
-          },
-          (error) => {
-            this.error = error;
-            this.submitted = false;
-            this.loading = false;
-          }
-        );
-    }
+onSubmit() {
+  // Marcamos que ya se intentó enviar
+  this.submitted = true;
+
+  // Si hay campos inválidos, salimos y mostramos errores en la UI
+  if (this.authForm.invalid) {
+    return;
   }
+
+  // Indicamos que estamos en "loading"
+  this.loading = true;
+
+  this.authService
+    .login(this.f['email'].value, this.f['password'].value)
+    .subscribe({
+      next: resp => {
+        if (!resp.success) {
+          this.noti.mensaje(
+            'Advertencia',
+            resp.message,
+            TipoMessage.warning
+          );
+          this.loading = false;
+          return;
+        }
+
+        // Login exitoso
+        this.noti.mensaje(
+          'Éxito',
+          'Inicio de sesión exitoso',
+          TipoMessage.success
+        );
+
+        const role = this.authService.currentUserValue?.role;
+        if (role === Role.All || role === Role.Admin) {
+          this.router.navigate(['/admin/dashboard/main']);
+        } else {
+          this.router.navigate(['/authentication/signin']);
+        }
+        this.loading = false;
+      },
+      error: err => {
+        debugger;
+        console.error('Error en login:', err);
+
+        // Extraer el mensaje de error correctamente
+        let errorMessage = 'Ocurrió un error inesperado';
+
+        if (err && err.message) {
+          errorMessage = err.message;
+        } else if (typeof err === 'string') {
+          errorMessage = err;
+        }
+
+        this.noti.mensaje(
+          'Error',
+          errorMessage,
+          TipoMessage.error
+        );
+
+        // volvemos a permitir que el formulario se reenvíe
+        this.submitted = false;
+        this.loading = false;
+      }
+    });
+}
+
 }

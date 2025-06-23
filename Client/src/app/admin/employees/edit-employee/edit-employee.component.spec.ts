@@ -1,25 +1,20 @@
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
-
-import { DashboardComponent } from "./dashboard.component";
-
-describe("DashboardComponent", () => {
-  let component: DashboardComponent;
-  let fixture: ComponentFixture<DashboardComponent>;
-
+import { EditEmployeeComponent } from "./edit-employee.component";
+describe("EditEmployeeComponent", () => {
+  let component: EditEmployeeComponent;
+  let fixture: ComponentFixture<EditEmployeeComponent>;
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-    imports: [DashboardComponent],
+    imports: [EditEmployeeComponent],
 }).compileComponents();
     })
   );
-
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardComponent);
+    fixture = TestBed.createComponent(EditEmployeeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
   it("should create", () => {
     expect(component).toBeTruthy();
   });

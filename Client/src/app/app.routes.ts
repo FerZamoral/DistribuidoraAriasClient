@@ -22,24 +22,7 @@ export const APP_ROUTE: Route[] = [
         loadChildren: () =>
           import('./admin/admin.routes').then((m) => m.ADMIN_ROUTE),
       },
-      {
-        path: 'employee',
-        canActivate: [AuthGuard],
-        data: {
-          role: Role.Employee,
-        },
-        loadChildren: () =>
-          import('./employee/employee.routes').then((m) => m.EMPLOYEE_ROUTE),
-      },
-      {
-        path: 'client',
-        canActivate: [AuthGuard],
-        data: {
-          role: Role.Client,
-        },
-        loadChildren: () =>
-          import('./client/client.routes').then((m) => m.CLIENT_ROUTE),
-      },
+
       {
         path: 'extra-pages',
         loadChildren: () =>

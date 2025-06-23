@@ -162,6 +162,79 @@
         }
       ]
     },
+     {
+      "path": "",
+      "title": "MENUITEMS.EMPLOYEES.TEXT",
+      "iconType": "feather",
+      "icon": "users",
+      "class": "menu-toggle",
+      "groupTitle": false,
+      "badge": "",
+      "badgeClass": "",
+      "role": ["Admin"],
+      "submenu": [
+        {
+          "path": "/admin/empleados/allEmployees",
+          "title": "MENUITEMS.EMPLOYEES.LIST.ALL-EMPLOYEE",
+          "iconType": "",
+          "icon": "",
+          "class": "ml-menu",
+          "groupTitle": false,
+          "badge": "",
+          "badgeClass": "",
+          "role": [""],
+          "submenu": []
+        },
+        {
+          "path": "/admin/empleados/add-employee",
+          "title": "MENUITEMS.EMPLOYEES.LIST.ADD-EMPLOYEE",
+          "iconType": "",
+          "icon": "",
+          "class": "ml-menu",
+          "groupTitle": false,
+          "badge": "",
+          "badgeClass": "",
+          "role": [""],
+          "submenu": []
+        },
+        {
+          "path": "/admin/empleados/edit-employee",
+          "title": "MENUITEMS.EMPLOYEES.LIST.EDIT-EMPLOYEE",
+          "iconType": "",
+          "icon": "",
+          "class": "ml-menu",
+          "groupTitle": false,
+          "badge": "",
+          "badgeClass": "",
+          "role": [""],
+          "submenu": []
+        },
+        {
+          "path": "/admin/empleados/employee-shift",
+          "title": "MENUITEMS.EMPLOYEES.LIST.EMPLOYEE-SHIFT",
+          "iconType": "",
+          "icon": "",
+          "class": "ml-menu",
+          "groupTitle": false,
+          "badge": "",
+          "badgeClass": "",
+          "role": [""],
+          "submenu": []
+        },
+        {
+          "path": "/admin/empleados/employee-profile",
+          "title": "MENUITEMS.EMPLOYEES.LIST.PROFILE",
+          "iconType": "",
+          "icon": "",
+          "class": "ml-menu",
+          "groupTitle": false,
+          "badge": "",
+          "badgeClass": "",
+          "role": [""],
+          "submenu": []
+        }
+      ]
+    },
     {
       "path": "",
       "title": "Extra Pages",
