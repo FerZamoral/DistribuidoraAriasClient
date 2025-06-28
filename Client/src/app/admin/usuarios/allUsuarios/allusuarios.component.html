@@ -1,0 +1,103 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <app-breadcrumb [title]="'All Usuarios'" [items]="['Usuarios']" [active_item]="'All Usuarios'"></app-breadcrumb>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="materialTableHeader">
+            <div class="left">
+              <ul class="header-buttons-left ms-0">
+                <li class="tbl-title">
+                  <h2>Usuarios</h2>
+                </li>
+                <li class="tbl-search-box">
+                  <label for="search-input">
+                    <i class="material-icons search-icon">Buscar</i>
+                  </label>
+                  <input placeholder="Buscar" type="text" #filter (keyup)="applyFilter($event)" class="browser-default search-field" aria-label="Search box">
+                </li>
+              </ul>
+            </div>
+            <div class="right">
+              <ul class="tbl-export-btn">
+                <li class="tbl-header-btn">
+                  <button mat-icon-button color="primary" (click)="addNew()" matTooltip="Agregar">
+                    <mat-icon>add_circle_outline</mat-icon>
+                  </button>
+                </li>
+                <li class="tbl-header-btn">
+                  <button mat-icon-button (click)="refresh()" matTooltip="Refrescar">
+                    <mat-icon>refresh</mat-icon>
+                  </button>
+                </li>
+                <li class="tbl-header-btn" *ngIf="selection.hasValue()">
+                  <button mat-icon-button (click)="removeSelectedRows()" class="col-red" matTooltip="Eliminar">
+                    <mat-icon>delete_outline</mat-icon>
+                  </button>
+                </li>
+                <li class="tbl-header-btn">
+                  <button mat-icon-button (click)="exportExcel()" class="col-blue" matTooltip="Descargar Excel">
+                    <mat-icon class="material-icons-outlined">file_download</mat-icon>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="overflow-auto">
+            <div class="responsive_table">
+              <table mat-table [dataSource]="dataSource" matSort class="mat-cell advance-table">
+                <ng-container matColumnDef="select">
+                  <mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" color="primary" [indeterminate]="selection.hasValue() && !isAllSelected()" class="tbl-checkbox">
+                    </mat-checkbox>
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let row">
+                    <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)" class="tbl-checkbox" color="primary">
+                    </mat-checkbox>
+                  </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="username">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Usuario</mat-header-cell>
+                  <mat-cell *matCellDef="let row">{{ row.username }}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="email">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Correo</mat-header-cell>
+                  <mat-cell *matCellDef="let row">{{ row.email }}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="roleName">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Rol</mat-header-cell>
+                  <mat-cell *matCellDef="let row">{{ row.roleName }}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="activo">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Activo</mat-header-cell>
+                  <mat-cell *matCellDef="let row">
+                    <mat-icon [ngClass]="row.activo ? 'text-success' : 'text-warn'">
+                      {{ row.activo ? 'check_circle' : 'highlight_off' }}
+                    </mat-icon>
+                  </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="actions">
+                  <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+                  <mat-cell *matCellDef="let row">
+                    <button mat-icon-button color="accent" (click)="editCall(row)" matTooltip="Editar">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" (click)="deleteItem(row)" matTooltip="Eliminar">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </mat-cell>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="getDisplayedColumns()"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: getDisplayedColumns();" (click)="editCall(row)" class="clickable-row"></mat-row>
+              </table>
+              <mat-progress-spinner *ngIf="isLoading" color="primary" [diameter]="40" mode="indeterminate"></mat-progress-spinner>
+              <mat-paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

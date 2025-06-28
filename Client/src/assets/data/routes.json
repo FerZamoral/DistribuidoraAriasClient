@@ -164,7 +164,7 @@
     },
      {
       "path": "",
-      "title": "MENUITEMS.EMPLOYEES.TEXT",
+      "title": "MENUITEMS.USUARIOS.TEXT",
       "iconType": "feather",
       "icon": "users",
       "class": "menu-toggle",
@@ -174,8 +174,8 @@
       "role": ["Admin"],
       "submenu": [
         {
-          "path": "/admin/empleados/allEmployees",
-          "title": "MENUITEMS.EMPLOYEES.LIST.ALL-EMPLOYEE",
+          "path": "/admin/usuarios/allUsuarios",
+          "title": "MENUITEMS.USUARIOS.LIST.ALL-USUARIO",
           "iconType": "",
           "icon": "",
           "class": "ml-menu",

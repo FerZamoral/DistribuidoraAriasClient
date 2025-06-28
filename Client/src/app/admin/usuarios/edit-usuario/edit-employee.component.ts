@@ -15,8 +15,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BreadcrumbComponent } from '@shared/components/breadcrumb/breadcrumb.component';
 @Component({
-    selector: 'app-edit-employee',
-    templateUrl: './edit-employee.component.html',
+    selector: 'app-edit-usuario',
+      templateUrl: './edit-employee.component.html',
     styleUrls: ['./edit-employee.component.scss'],
     imports: [
         BreadcrumbComponent,

@@ -7,9 +7,9 @@ export const ADMIN_ROUTE: Route[] = [
       import('./dashboard/dashboard.routes').then((m) => m.ADMIN_DASHBOARD_ROUTE),
   },
   {
-    path: 'empleados',
+    path: 'usuarios',
     loadChildren: () =>
-      import('./employees/employees.routes').then((m) => m.ADMIN_EMPLOYEE_ROUTE),
+      import('./usuarios/usuarios.routes').then((m) => m.ADMIN_USUARIO_ROUTE),
   }
 ];
 

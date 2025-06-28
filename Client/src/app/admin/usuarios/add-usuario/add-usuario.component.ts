@@ -15,9 +15,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BreadcrumbComponent } from '@shared/components/breadcrumb/breadcrumb.component';
 @Component({
-    selector: 'app-add-employee',
-    templateUrl: './add-employee.component.html',
-    styleUrls: ['./add-employee.component.scss'],
+    selector: 'app-add-usuario',
+    templateUrl: './add-usuario.component.html',
+    styleUrls: ['./add-usuario.component.scss'],
     imports: [
         BreadcrumbComponent,
         FormsModule,
@@ -31,7 +31,7 @@ import { BreadcrumbComponent } from '@shared/components/breadcrumb/breadcrumb.co
         MatButtonModule,
     ]
 })
-export class AddEmployeeComponent {
+export class AddUsuarioComponent {
   docForm: UntypedFormGroup;
   hide3 = true;
   agree3 = false;

@@ -7,36 +7,31 @@ import {
   MatDialogClose,
 } from '@angular/material/dialog';
 import { Component, Inject } from '@angular/core';
-import { EmployeesService } from '../../employees.service';
+import { UsuariosService } from '../../usuarios.service';
 import { MatButtonModule } from '@angular/material/button';
+import { materialImports } from '@shared/material-imports';
 
 export interface DialogData {
   id: number;
-  name: string;
-  department: string;
-  mobile: string;
+  username: string;
 }
 
 @Component({
-    selector: 'app-all-employee-delete',
+    selector: 'app-all-usuario-delete',
     templateUrl: './delete.component.html',
     styleUrls: ['./delete.component.scss'],
     imports: [
-        MatDialogTitle,
-        MatDialogContent,
-        MatDialogActions,
-        MatButtonModule,
-        MatDialogClose,
+        materialImports
     ]
 })
-export class AllEmployeesDeleteComponent {
+export class AllUsuariosDeleteComponent {
   constructor(
-    public dialogRef: MatDialogRef<AllEmployeesDeleteComponent>,
+    public dialogRef: MatDialogRef<AllUsuariosDeleteComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    public employeesService: EmployeesService
+    public usuariosService: UsuariosService
   ) {}
   confirmDelete(): void {
-    this.employeesService.deleteEmployee(this.data.id).subscribe({
+    this.usuariosService.delete(this.data.id).subscribe({
       next: (response) => {
         // console.log('Delete Response:', response);
         this.dialogRef.close(response); // Close with the response data
