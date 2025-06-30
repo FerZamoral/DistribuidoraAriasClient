@@ -22,3 +22,8 @@ export interface UsuarioUpdateDto {
   roleId: number;
   activo: boolean;
 }
+
+export interface Rol {
+  id: number;
+  nombre: string;
+}

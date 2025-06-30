@@ -35,4 +35,10 @@ export class GenericService {
       objUpdate
     );
   }
+
+  // shared/generic.service.ts
+patch<T>(url: string, body: any): Observable<T> {
+  return this.http.patch<T>(`${this.urlAPI}${url}`, body);
+}
+
 }

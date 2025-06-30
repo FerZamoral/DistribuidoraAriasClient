@@ -17,7 +17,7 @@ export interface DialogData {
 }
 
 @Component({
-    selector: 'app-all-usuario-delete',
+    selector: 'app-usuario-delete',
     templateUrl: './delete.component.html',
     styleUrls: ['./delete.component.scss'],
     imports: [
@@ -30,17 +30,8 @@ export class AllUsuariosDeleteComponent {
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
     public usuariosService: UsuariosService
   ) {}
-  confirmDelete(): void {
-    this.usuariosService.delete(this.data.id).subscribe({
-      next: (response) => {
-        // console.log('Delete Response:', response);
-        this.dialogRef.close(response); // Close with the response data
-        // Handle successful deletion, e.g., refresh the table or show a notification
-      },
-      error: (error) => {
-        console.error('Delete Error:', error);
-        // Handle the error appropriately
-      },
-    });
-  }
+confirmDelete(): void {
+  this.dialogRef.close(true); // Solo indica que se confirmó
+}
+
 }

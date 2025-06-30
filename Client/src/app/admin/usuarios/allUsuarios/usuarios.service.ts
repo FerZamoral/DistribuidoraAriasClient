@@ -28,7 +28,7 @@ export class UsuariosService {
 
   /** POST: Add a new usuario */
   add(usuario: Partial<any>): Observable<any> {
-    return this.genericService.create(this.endpoint, usuario).pipe(
+    return this.genericService.create(this.endpoint + "/register", usuario).pipe(
       map((res: any) => res as any),
       catchError(err => {
         console.error('Error adding usuario', err);
@@ -48,23 +48,14 @@ export class UsuariosService {
     );
   }
 
-  /** DELETE (lógico): desactiva un usuario */
-  delete(id: number): Observable<void> {
-    // Para borrado lógico, podrías llamar a update pasando activo=false,
-    // pero si tu API soporta DELETE directamente:
-    return this.genericService.get(this.endpoint, id).pipe(
-      // primero obtener el usuario
-      map(res => res as Usuario),
-      map(user => ({ ...user, activo: false })),
-      // luego actualizarlo
-      switchMap(updated =>
-        this.genericService.update(this.endpoint, id)
-      ),
-      map(() => void 0),
-      catchError(err => {
-        console.error('Error deleting usuario', err);
-        return throwError(() => err);
-      })
-    );
-  }
+cambiarEstado(id: number, activo: boolean): Observable<void> {
+  return this.genericService.patch<void>(`${this.endpoint}/${id}/estado`, { id, activo }).pipe(
+    catchError(err => {
+      console.error('Error cambiando estado del usuario', err);
+      return throwError(() => err);
+    })
+  );
+}
+
+
 }

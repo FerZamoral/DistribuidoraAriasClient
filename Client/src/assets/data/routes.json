@@ -164,7 +164,7 @@
     },
      {
       "path": "",
-      "title": "MENUITEMS.USUARIOS.TEXT",
+      "title": "Usuarios",
       "iconType": "feather",
       "icon": "users",
       "class": "menu-toggle",
@@ -175,7 +175,19 @@
       "submenu": [
         {
           "path": "/admin/usuarios/allUsuarios",
-          "title": "MENUITEMS.USUARIOS.LIST.ALL-USUARIO",
+          "title": "Lista de Usuarios",
+          "iconType": "",
+          "icon": "", 
+          "class": "ml-menu",
+          "groupTitle": false,
+          "badge": "",
+          "badgeClass": "",
+          "role": [""],
+          "submenu": []
+        },
+        {
+          "path": "/admin/usuarios/add-employee",
+          "title": "Agregar Empleado",
           "iconType": "",
           "icon": "",
           "class": "ml-menu",
@@ -186,8 +198,8 @@
           "submenu": []
         },
         {
-          "path": "/admin/empleados/add-employee",
-          "title": "MENUITEMS.EMPLOYEES.LIST.ADD-EMPLOYEE",
+          "path": "/admin/usuarios/edit-employee",
+          "title": "Editar Empleado",
           "iconType": "",
           "icon": "",
           "class": "ml-menu",
@@ -198,8 +210,8 @@
           "submenu": []
         },
         {
-          "path": "/admin/empleados/edit-employee",
-          "title": "MENUITEMS.EMPLOYEES.LIST.EDIT-EMPLOYEE",
+          "path": "/admin/usuarios/employee-shift",
+          "title": "SHIFT",
           "iconType": "",
           "icon": "",
           "class": "ml-menu",
@@ -210,20 +222,8 @@
           "submenu": []
         },
         {
-          "path": "/admin/empleados/employee-shift",
-          "title": "MENUITEMS.EMPLOYEES.LIST.EMPLOYEE-SHIFT",
-          "iconType": "",
-          "icon": "",
-          "class": "ml-menu",
-          "groupTitle": false,
-          "badge": "",
-          "badgeClass": "",
-          "role": [""],
-          "submenu": []
-        },
-        {
-          "path": "/admin/empleados/employee-profile",
-          "title": "MENUITEMS.EMPLOYEES.LIST.PROFILE",
+          "path": "/admin/usuarios/employee-profile",
+          "title": "Perfil de Empleado",
           "iconType": "",
           "icon": "",
           "class": "ml-menu",

@@ -133,71 +133,66 @@ export class AllusuariosComponent implements OnInit, OnDestroy {
     this.dataSource.filter = filterValue;
   }
 
-  addNew() {
-    const dialogRef = this.dialog.open(UsuarioFormDialogComponent, {
-      width: '600px',
-      data: { action: 'add' }
-    });
-    dialogRef.afterClosed().subscribe((newUser: any) => {
-      if (!newUser) return;
-      this.usuariosService.add(newUser).subscribe({
-        next: user => {
-          this.dataSource.data = [user, ...this.dataSource.data];
-          this.refreshTable();
-          this.snackBar.open('Usuario agregado', '', {
-            duration: 2000, panelClass: 'snackbar-success'
-          });
-        },
-        error: () => this.snackBar.open('Error al agregar', '', {
-          duration: 2000, panelClass: 'snackbar-danger'
-        })
-      });
-    });
-  }
+addNew() {
+  const dialogRef = this.dialog.open(UsuarioFormDialogComponent, {
+    width: '600px',
+    data: { action: 'add' }
+  });
 
-  editCall(row: any) {
-    const dialogRef = this.dialog.open(UsuarioFormDialogComponent, {
-      width: '600px',
-      data: { action: 'edit', usuario: row }
+  dialogRef.afterClosed().subscribe((newUser: Usuario | null) => {
+    if (!newUser) return;
+    this.loadData();
+    this.snackBar.open('Usuario agregado', '', {
+      duration: 2000,
+      panelClass: 'snackbar-success'
     });
-    dialogRef.afterClosed().subscribe((updated: any) => {
-      if (!updated) return;
-      this.usuariosService.update(updated).subscribe({
-        next: user => {
-          const idx = this.dataSource.data.findIndex(u => u.id === user.id);
-          this.dataSource.data[idx] = user;
-          this.dataSource._updateChangeSubscription();
-          this.snackBar.open('Usuario editado', '', {
-            duration: 2000, panelClass: 'snackbar-success'
-          });
-        },
-        error: () => this.snackBar.open('Error al editar', '', {
-          duration: 2000, panelClass: 'snackbar-danger'
-        })
-      });
-    });
-  }
+  });
+}
 
-  deleteItem(row: any) {
-    const dialogRef = this.dialog.open(AllUsuariosDeleteComponent, {
-      data: row
+
+ editCall(row: Usuario) {
+  const dialogRef = this.dialog.open(UsuarioFormDialogComponent, {
+    width: '600px',
+    data: { action: 'edit', usuario: row }
+  });
+
+  dialogRef.afterClosed().subscribe((updated: Usuario | null) => {
+    if (!updated) return;
+
+    this.loadData(); 
+    this.snackBar.open('Usuario editado', '', {
+      duration: 2000,
+      panelClass: 'snackbar-success'
     });
-    dialogRef.afterClosed().subscribe(confirmed => {
-      if (!confirmed) return;
-      this.usuariosService.delete(row.id).subscribe({
-        next: () => {
-          this.dataSource.data = this.dataSource.data.filter(u => u.id !== row.id);
-          this.refreshTable();
-          this.snackBar.open('Usuario desactivado', '', {
-            duration: 2000, panelClass: 'snackbar-success'
-          });
-        },
-        error: () => this.snackBar.open('Error al eliminar', '', {
-          duration: 2000, panelClass: 'snackbar-danger'
-        })
-      });
+  });
+}
+
+
+deleteItem(row: Usuario) {
+  const dialogRef = this.dialog.open(AllUsuariosDeleteComponent, {
+    data: row
+  });
+
+  dialogRef.afterClosed().subscribe(confirmed => {
+    if (!confirmed) return;
+
+    this.usuariosService.cambiarEstado(row.id, false).subscribe({
+      next: () => {
+       this.loadData(); // Recargar datos después de eliminar
+        this.snackBar.open('Usuario desactivado', '', {
+          duration: 2000, panelClass: 'snackbar-success'
+        });
+      },
+      error: () => this.snackBar.open('Error al desactivar', '', {
+        duration: 2000, panelClass: 'snackbar-danger'
+      })
     });
-  }
+  });
+}
+
+
+
+  
 
   masterToggle() {
     this.isAllSelected()
