@@ -237,6 +237,56 @@
     },
     {
       "path": "",
+      "title": "Tipos de Bonificación",
+      "iconType": "feather",
+      "icon": "gift",
+      "class": "menu-toggle",
+      "groupTitle": false,
+      "badge": "",
+      "badgeClass": "",
+      "role": ["Admin"],
+      "submenu": [
+        {
+          "path": "/admin/tipobonificaciones/alltipobonificaciones",
+          "title": "Lista de Tipos",
+          "iconType": "",
+          "icon": "",
+          "class": "ml-menu",
+          "groupTitle": false,
+          "badge": "",
+          "badgeClass": "",
+          "role": [""],
+          "submenu": []
+        },
+        {
+          "path": "/admin/tipobonificaciones/nuevo",
+          "title": "Agregar Tipo",
+          "iconType": "",
+          "icon": "",
+          "class": "ml-menu",
+          "groupTitle": false,
+          "badge": "",
+          "badgeClass": "",
+          "role": [""],
+          "submenu": []
+        },
+        {
+          "path": "/admin/tipobonificaciones/editar",
+          "title": "Editar Tipo",
+          "iconType": "",
+          "icon": "",
+          "class": "ml-menu",
+          "groupTitle": false,
+          "badge": "",
+          "badgeClass": "",
+          "role": [""],
+          "submenu": []
+        }
+      ]
+    },        
+
+    {
+      "path": "",
       "title": "Extra Pages",
       "iconType": "feather",
       "icon": "anchor",

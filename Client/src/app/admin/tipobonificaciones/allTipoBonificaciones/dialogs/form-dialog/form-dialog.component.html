@@ -1,0 +1,86 @@
+<div class="addContainer">
+  <!-- Encabezado del modal -->
+  <div class="modalHeader">
+    <div class="avatarDetails">
+      <img src="/assets/images/bonus.png" alt="bono" />
+    </div>
+
+    <button
+      mat-icon-button
+      mat-dialog-close
+      class="modal-close-button"
+      aria-label="Cerrar"
+      type="button">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <!-- Cuerpo del diálogo -->
+  <mat-dialog-content>
+    <form
+      class="m-4"
+      [formGroup]="form"
+      (ngSubmit)="submit()">
+
+      <div class="row">
+        <div class="col-12 mb-3">
+          <mat-form-field
+            class="w-100"
+            appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input
+              matInput
+              formControlName="nombre"
+              required />
+            <mat-icon
+              matSuffix
+              class="material-icons-outlined color-icon p-2">label</mat-icon>
+            <mat-error *ngIf="form.get('nombre')?.hasError('required')">
+              El nombre es requerido
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-12 mb-3">
+          <mat-form-field
+            class="w-100"
+            appearance="outline">
+            <mat-label>Descripción</mat-label>
+            <textarea
+              matInput
+              formControlName="descripcion"
+              rows="3"
+              required></textarea>
+            <mat-icon
+              matSuffix
+              class="material-icons-outlined color-icon p-2">notes</mat-icon>
+            <mat-error *ngIf="form.get('descripcion')?.hasError('required')">
+              La descripción es requerida
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Botones -->
+      <div class="text-end mt-4">
+        <button
+          mat-flat-button
+          color="primary"
+          class="formSubmitBtn me-2"
+          [disabled]="form.invalid"
+          type="submit">
+          {{ action === 'add' ? 'Guardar' : 'Actualizar' }}
+        </button>
+
+        <button
+          mat-flat-button
+          color="accent"
+          mat-dialog-close
+          class="formCancelBtn"
+          tabindex="-1">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </mat-dialog-content>
+</div>

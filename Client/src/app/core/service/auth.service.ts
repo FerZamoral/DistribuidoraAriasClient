@@ -65,7 +65,6 @@ export class AuthService {
       .post<LoginApiResponse>(`${this.baseUrl}Auth/login`, { email, password })
       .pipe(
         switchMap(resp => {
-          debugger;
           const token = resp.data.token;
           if (!token) return throwError(() => 'No token returned');
 
@@ -106,7 +105,7 @@ export class AuthService {
           // );
         }),
        catchError((err: any) => {
-        debugger;
+       
   this.authenticatedSubject.next(false);
   return throwError(() => err.error);  // relanza solo el objeto JSON
 })
