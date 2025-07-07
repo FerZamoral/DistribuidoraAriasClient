@@ -81,10 +81,10 @@
                 <ng-container matColumnDef="actions">
                   <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
                   <mat-cell *matCellDef="let row">
-                    <button mat-icon-button color="accent" (click)="editCall(row)" matTooltip="Editar">
+                    <button mat-icon-button color="accent" (click)="editCall(row); $event.stopPropagation()" matTooltip="Editar">
                       <mat-icon>edit</mat-icon>
                     </button>
-                    <button mat-icon-button color="warn" (click)="deleteItem(row)" matTooltip="Eliminar">
+                    <button mat-icon-button color="warn" (click)="deleteItem(row); $event.stopPropagation()" matTooltip="Eliminar">
                       <mat-icon>delete</mat-icon>
                     </button>
                   </mat-cell>
