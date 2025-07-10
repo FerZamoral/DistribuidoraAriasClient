@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { AllTipoDeduccionesComponent } from './.component';
+import { AllTipoDeduccionesComponent } from './alltipoDeducciones.component';
 
 describe('AllTipoDeduccionesComponent', () => {
   let component: AllTipoDeduccionesComponent;

@@ -16,5 +16,10 @@ export const ADMIN_ROUTE: Route[] = [
     loadChildren: () =>
       import('./tipobonificaciones/tipobonificaciones.routes').then((m) => m.ADMIN_TIPOBONIFICACIONES_ROUTE),
   },
+   {
+    path: 'tipodeducciones',
+    loadChildren: () =>
+      import('./tipoDeducciones/tipoDeduccion.routes').then(m => m.ADMIN_TIPODEDUCCIONES_ROUTE),
+  },
 ];
 

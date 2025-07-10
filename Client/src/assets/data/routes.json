@@ -236,6 +236,55 @@
       ]
     },
     {
+  "path": "",
+  "title": "Tipos de Deducción",
+  "iconType": "feather",
+  "icon": "minus-square",
+  "class": "menu-toggle",
+  "groupTitle": false,
+  "badge": "",
+  "badgeClass": "",
+  "role": ["Admin"],
+  "submenu": [
+    {
+      "path": "/admin/tipodeducciones/alltipodeducciones",
+      "title": "Lista de Tipos",
+      "iconType": "",
+      "icon": "",
+      "class": "ml-menu",
+      "groupTitle": false,
+      "badge": "",
+      "badgeClass": "",
+      "role": [""],
+      "submenu": []
+    },
+    {
+      "path": "/admin/tipodeducciones/nuevo",
+      "title": "Agregar Tipo",
+      "iconType": "",
+      "icon": "",
+      "class": "ml-menu",
+      "groupTitle": false,
+      "badge": "",
+      "badgeClass": "",
+      "role": [""],
+      "submenu": []
+    },
+    {
+      "path": "/admin/tipodeducciones/editar",
+      "title": "Editar Tipo",
+      "iconType": "",
+      "icon": "",
+      "class": "ml-menu",
+      "groupTitle": false,
+      "badge": "",
+      "badgeClass": "",
+      "role": [""],
+      "submenu": []
+    }
+  ]
+},
+    {
       "path": "",
       "title": "Tipos de Bonificación",
       "iconType": "feather",
