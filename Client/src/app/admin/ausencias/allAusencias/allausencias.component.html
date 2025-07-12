@@ -1,0 +1,127 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <app-breadcrumb [title]="'Todas las Ausencias'" [items]="['Ausencias']" [active_item]="'Lista de Ausencias'"></app-breadcrumb>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="materialTableHeader">
+            <div class="left">
+              <ul class="header-buttons-left ms-0">
+                <li class="tbl-title">
+                  <h2>Ausencias</h2>
+                </li>
+                <li class="tbl-search-box">
+                  <label for="search-input"><i class="material-icons search-icon">Buscar</i></label>
+                  <input placeholder="Buscar" type="text" #filter (keyup)="applyFilter($event)" class="browser-default search-field" aria-label="Search box">
+                </li>
+              </ul>
+            </div>
+            <div class="right">
+              <ul class="tbl-export-btn">
+                <li class="tbl-header-btn">
+                  <button mat-icon-button color="primary" (click)="addNew()" matTooltip="Agregar">
+                    <mat-icon>add_circle_outline</mat-icon>
+                  </button>
+                </li>
+                <li class="tbl-header-btn">
+                  <button mat-icon-button (click)="refresh()" matTooltip="Refrescar">
+                    <mat-icon>refresh</mat-icon>
+                  </button>
+                </li>
+                <li class="tbl-header-btn" *ngIf="selection.hasValue()">
+                  <button mat-icon-button (click)="removeSelectedRows()" class="col-red" matTooltip="Eliminar">
+                    <mat-icon>delete_outline</mat-icon>
+                  </button>
+                </li>
+                <li class="tbl-header-btn">
+                  <button mat-icon-button (click)="exportExcel()" class="col-blue" matTooltip="Descargar Excel">
+                    <mat-icon class="material-icons-outlined">file_download</mat-icon>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="overflow-auto">
+            <div class="responsive_table">
+              <table mat-table [dataSource]="dataSource" matSort class="mat-cell advance-table">
+
+                <!-- Checkbox -->
+                <ng-container matColumnDef="select">
+                  <mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? masterToggle() : null"
+                                  [checked]="selection.hasValue() && isAllSelected()"
+                                  [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                  class="tbl-checkbox"
+                                  color="primary">
+                    </mat-checkbox>
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let row">
+                    <mat-checkbox (click)="$event.stopPropagation()"
+                                  (change)="$event ? selection.toggle(row) : null"
+                                  [checked]="selection.isSelected(row)"
+                                  class="tbl-checkbox"
+                                  color="primary">
+                    </mat-checkbox>
+                  </mat-cell>
+                </ng-container>
+
+                <!-- Nombre del Empleado -->
+                <ng-container matColumnDef="nombreEmpleado">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Empleado</mat-header-cell>
+                  <mat-cell *matCellDef="let row">{{ row.nombreEmpleado }}</mat-cell>
+                </ng-container>
+
+                <!-- Fecha de Inicio -->
+                <ng-container matColumnDef="fechaInicio">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Inicio</mat-header-cell>
+                  <mat-cell *matCellDef="let row">{{ row.fechaInicio | date }}</mat-cell>
+                </ng-container>
+
+                <!-- Fecha de Fin -->
+                <ng-container matColumnDef="fechaFin">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Fin</mat-header-cell>
+                  <mat-cell *matCellDef="let row">{{ row.fechaFin | date }}</mat-cell>
+                </ng-container>
+
+                <!-- Porcentaje de Salario -->
+                <ng-container matColumnDef="porcentajeSalario">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Salario (%)</mat-header-cell>
+                  <mat-cell *matCellDef="let row">{{ row.porcentajeSalario * 100 | number:'1.0-2' }}%</mat-cell>
+                </ng-container>
+
+                <!-- Motivo -->
+                <ng-container matColumnDef="motivo">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Motivo</mat-header-cell>
+                  <mat-cell *matCellDef="let row">{{ row.motivo }}</mat-cell>
+                </ng-container>
+
+                <!-- Acciones -->
+                <ng-container matColumnDef="actions">
+                  <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+                  <mat-cell *matCellDef="let row">
+                    <button mat-icon-button color="accent" (click)="editCall(row); $event.stopPropagation()" matTooltip="Editar">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" (click)="deleteItem(row); $event.stopPropagation()" matTooltip="Eliminar">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="getDisplayedColumns()"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: getDisplayedColumns();" (click)="editCall(row)" class="clickable-row"></mat-row>
+              </table>
+
+              <mat-progress-spinner *ngIf="isLoading" color="primary" [diameter]="40" mode="indeterminate"></mat-progress-spinner>
+
+              <mat-paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

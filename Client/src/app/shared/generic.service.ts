@@ -35,6 +35,11 @@ export class GenericService {
       objUpdate
     );
   }
+  // eliminar
+  delete(endpoint: string, id: number | string): Observable<any> {
+    return this.http.delete<any>(this.urlAPI + endpoint + `/${id}`);
+  }
+
 
   // shared/generic.service.ts
 patch<T>(url: string, body: any): Observable<T> {

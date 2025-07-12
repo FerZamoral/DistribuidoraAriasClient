@@ -1,0 +1,119 @@
+<div class="addContainer">
+  <div class="modalHeader">
+    <div class="avatarDetails">
+      <label class="hoverable" for="tableFileInput">
+        <img [src]="'/assets/images/admin.png'" alt="avatar" />
+      </label>
+    </div>
+    <button
+      mat-icon-button
+      mat-dialog-close
+      class="modal-close-button"
+      aria-label="Close dialog"
+      type="button"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div mat-dialog-content>
+    <form class="register-form m-4" [formGroup]="form" (ngSubmit)="submit()">
+      <div class="row">
+        <!-- Nombre -->
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre" required />
+            <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>face</mat-icon>
+            @if (form.get('nombre')?.hasError('required')) {
+              <mat-error>El nombre es requerido</mat-error>
+            }
+          </mat-form-field>
+        </div>
+
+        <!-- Cédula -->
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Cédula</mat-label>
+            <input matInput formControlName="cedula" required maxlength="9" />
+            <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>badge</mat-icon>
+            @if (form.get('cedula')?.hasError('required')) {
+              <mat-error>La cédula es requerida</mat-error>
+            }
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- Correo -->
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Correo</mat-label>
+            <input matInput formControlName="correo" required />
+            <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>email</mat-icon>
+            @if (form.get('correo')?.hasError('required') || form.get('correo')?.touched) {
+              <mat-error>Correo inválido</mat-error>
+            }
+          </mat-form-field>
+        </div>
+
+        <!-- Salario Base -->
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Salario Base</mat-label>
+            <input matInput formControlName="salarioBase" type="number" required />
+            <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>attach_money</mat-icon>
+            <mat-error *ngIf="form.get('salarioBase')?.hasError('min')">
+              El salario base debe ser mayor a 1000.
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- Estado -->
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Estado</mat-label>
+            <mat-select formControlName="activo">
+              <mat-option [value]="true">Activo</mat-option>
+              <mat-option [value]="false">Inactivo</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Errores -->
+      <mat-error *ngIf="form.get('cedula')?.hasError('pattern')">
+        La cédula debe tener exactamente 9 dígitos.
+      </mat-error>
+
+      
+
+
+
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <div class="example-button-row">
+            <button
+              mat-flat-button
+              class="formSubmitBtn"
+              [disabled]="!form.valid"
+              type="submit"
+            >
+              Guardar
+            </button>
+            <button
+              mat-flat-button
+              mat-dialog-close
+              class="formCancelBtn"
+              tabindex="-1"
+            >
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
