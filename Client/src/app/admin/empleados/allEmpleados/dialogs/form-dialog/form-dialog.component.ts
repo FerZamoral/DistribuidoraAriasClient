@@ -44,7 +44,7 @@ export class EmpleadoFormDialogComponent {
     this.action = data.action;
     this.form = this.fb.group({
       id: [data.empleado?.id || 0],
-      nombre: [data.empleado?.nombre || '', Validators.required, this.sinEspaciosValidator],
+      nombre: [data.empleado?.nombre || '', Validators.required],
       cedula: [
         data.empleado?.cedula || '',
         [Validators.required, Validators.pattern(/^\d{9}$/)]
@@ -62,13 +62,7 @@ export class EmpleadoFormDialogComponent {
 
   }
 
-  sinEspaciosValidator(control: AbstractControl): ValidationErrors | null {
-  const valor = control.value;
-  if (typeof valor === 'string' && valor.trim().length === 0) {
-    return { soloEspacios: true };
-  }
-  return null;
-}
+
 
 
   submit(): void {
