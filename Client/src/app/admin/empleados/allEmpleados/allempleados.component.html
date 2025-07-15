@@ -1,7 +1,7 @@
 <section class="content">
   <div class="content-block">
     <div class="block-header">
-      <app-breadcrumb [title]="'All Usuarios'" [items]="['Usuarios']" [active_item]="'All Usuarios'"></app-breadcrumb>
+      <app-breadcrumb [title]="'Todos los Empleados'" [items]="['Empleados']" [active_item]="'Lista de Empleados'"></app-breadcrumb>
     </div>
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -10,7 +10,7 @@
             <div class="left">
               <ul class="header-buttons-left ms-0">
                 <li class="tbl-title">
-                  <h2>Usuarios</h2>
+                  <h2>Empleados</h2>
                 </li>
                 <li class="tbl-search-box">
                   <label for="search-input">
@@ -45,9 +45,11 @@
               </ul>
             </div>
           </div>
+
           <div class="overflow-auto">
             <div class="responsive_table">
               <table mat-table [dataSource]="dataSource" matSort class="mat-cell advance-table">
+                <!-- Checkbox -->
                 <ng-container matColumnDef="select">
                   <mat-header-cell *matHeaderCellDef>
                     <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" color="primary" [indeterminate]="selection.hasValue() && !isAllSelected()" class="tbl-checkbox">
@@ -58,18 +60,32 @@
                     </mat-checkbox>
                   </mat-cell>
                 </ng-container>
-                <ng-container matColumnDef="username">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>Usuario</mat-header-cell>
-                  <mat-cell *matCellDef="let row">{{ row.username }}</mat-cell>
+
+                <!-- Nombre -->
+                <ng-container matColumnDef="nombre">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</mat-header-cell>
+                  <mat-cell *matCellDef="let row">{{ row.nombre }}</mat-cell>
                 </ng-container>
-                <ng-container matColumnDef="email">
+
+                <!-- Cédula -->
+                <ng-container matColumnDef="cedula">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Cédula</mat-header-cell>
+                  <mat-cell *matCellDef="let row">{{ row.cedula }}</mat-cell>
+                </ng-container>
+
+                <!-- Correo -->
+                <ng-container matColumnDef="correo">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Correo</mat-header-cell>
-                  <mat-cell *matCellDef="let row">{{ row.email }}</mat-cell>
+                  <mat-cell *matCellDef="let row">{{ row.correo }}</mat-cell>
                 </ng-container>
-                <ng-container matColumnDef="roleName">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>Rol</mat-header-cell>
-                  <mat-cell *matCellDef="let row">{{ row.roleName }}</mat-cell>
+
+                <!-- Salario Base -->
+                <ng-container matColumnDef="salarioBase">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Salario Base</mat-header-cell>
+                  <mat-cell *matCellDef="let row">{{ row.salarioBase | currency:'CRC ' }}</mat-cell>
                 </ng-container>
+
+                <!-- Activo -->
                 <ng-container matColumnDef="activo">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Activo</mat-header-cell>
                   <mat-cell *matCellDef="let row">
@@ -78,6 +94,8 @@
                     </mat-icon>
                   </mat-cell>
                 </ng-container>
+
+                <!-- Acciones -->
                 <ng-container matColumnDef="actions">
                   <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
                   <mat-cell *matCellDef="let row">
@@ -89,10 +107,13 @@
                     </button>
                   </mat-cell>
                 </ng-container>
+
                 <mat-header-row *matHeaderRowDef="getDisplayedColumns()"></mat-header-row>
                 <mat-row *matRowDef="let row; columns: getDisplayedColumns();" (click)="editCall(row)" class="clickable-row"></mat-row>
               </table>
+
               <mat-progress-spinner *ngIf="isLoading" color="primary" [diameter]="40" mode="indeterminate"></mat-progress-spinner>
+
               <mat-paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
             </div>
           </div>

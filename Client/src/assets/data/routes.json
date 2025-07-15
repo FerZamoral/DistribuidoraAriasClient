@@ -186,8 +186,8 @@
           "submenu": []
         },
         {
-          "path": "/admin/usuarios/add-employee",
-          "title": "Agregar Empleado",
+          "path": "/admin/usuarios/add-usuario",
+          "title": "Agregar Usuario",
           "iconType": "",
           "icon": "",
           "class": "ml-menu",
@@ -334,6 +334,43 @@
       ]
     },        
 
+    {
+      "path": "",
+      "title": "Empleados",
+      "iconType": "feather",
+      "icon": "users",
+      "class": "menu-toggle",
+      "groupTitle": false,
+      "badge": "",
+      "badgeClass": "",
+      "role": ["Admin"],
+      "submenu": [
+        {
+          "path": "/admin/empleados/allEmpleados",
+          "title": "Lista de Empleados",
+          "iconType": "",
+          "icon": "", 
+          "class": "ml-menu",
+          "groupTitle": false,
+          "badge": "",
+          "badgeClass": "",
+          "role": [""],
+          "submenu": []
+        },
+        {
+          "path": "/admin/ausencias/allAusencias",
+          "title": "Lista de Ausencias",
+          "iconType": "",
+          "icon": "", 
+          "class": "ml-menu",
+          "groupTitle": false,
+          "badge": "",
+          "badgeClass": "",
+          "role": [""],
+          "submenu": []
+        }
+      ]
+    },
     {
       "path": "",
       "title": "Extra Pages",

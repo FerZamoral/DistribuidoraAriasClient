@@ -21,5 +21,16 @@ export const ADMIN_ROUTE: Route[] = [
     loadChildren: () =>
       import('./tipoDeducciones/tipoDeduccion.routes').then(m => m.ADMIN_TIPODEDUCCIONES_ROUTE),
   },
+  {
+    path: 'empleados',
+    loadChildren: () =>
+      import('./empleados/empleados.routes').then((m) => m.ADMIN_EMPLEADO_ROUTE),
+  },
+  {
+    path: 'ausencias',
+    loadChildren: () =>
+      import('./ausencias/ausencias.routes').then((m) => m.ADMIN_AUSENCIAS_ROUTE),
+  }
+
 ];
 
