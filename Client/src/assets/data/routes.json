@@ -186,8 +186,8 @@
           "submenu": []
         },
         {
-          "path": "/admin/usuarios/add-employee",
-          "title": "Agregar Empleado",
+          "path": "/admin/usuarios/add-usuario",
+          "title": "Agregar Usuario",
           "iconType": "",
           "icon": "",
           "class": "ml-menu",
