@@ -45,8 +45,6 @@ export class GenericService {
 patch<T>(url: string, body: any): Observable<T> {
   return this.http.patch<T>(`${this.urlAPI}${url}`, body);
 }
-delete<T>(url: string): Observable<T> {
-    return this.http.delete<T>(this.urlAPI + url);
-  }
+
 
 }
