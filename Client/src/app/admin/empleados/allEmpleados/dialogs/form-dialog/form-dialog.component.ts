@@ -63,7 +63,11 @@ export class EmpleadoFormDialogComponent {
   }
 
 
-
+  onCedulaInput(event: Event): void {
+      const input = event.target as HTMLInputElement;
+      input.value = input.value.replace(/[^0-9]/g, '').slice(0, 9);
+      this.form.get('cedula')?.setValue(input.value);
+    }
 
   submit(): void {
   if (this.form.invalid) return;

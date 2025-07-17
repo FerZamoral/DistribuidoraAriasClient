@@ -259,10 +259,47 @@
           "submenu": []
         },
         {
+          "path": "/admin/empleados/add-empleado",
+          "title": "Agregar Empleado",
+          "iconType": "",
+          "icon": "",
+          "class": "ml-menu",
+          "groupTitle": false,
+          "badge": "",
+          "badgeClass": "",
+          "role": [""],
+          "submenu": []
+        }
+      ]
+    },
+    {
+      "path": "",
+      "title": "Ausencias",
+      "iconType": "feather",
+      "icon": "calendar",
+      "class": "menu-toggle",
+      "groupTitle": false,
+      "badge": "",
+      "badgeClass": "",
+      "role": ["Admin"],
+      "submenu": [
+        {
           "path": "/admin/ausencias/allAusencias",
           "title": "Lista de Ausencias",
           "iconType": "",
           "icon": "", 
+          "class": "ml-menu",
+          "groupTitle": false,
+          "badge": "",
+          "badgeClass": "",
+          "role": [""],
+          "submenu": []
+        },
+        {
+          "path": "/admin/ausencias/add-ausencia",
+          "title": "Agregar Ausencia",
+          "iconType": "",
+          "icon": "",
           "class": "ml-menu",
           "groupTitle": false,
           "badge": "",

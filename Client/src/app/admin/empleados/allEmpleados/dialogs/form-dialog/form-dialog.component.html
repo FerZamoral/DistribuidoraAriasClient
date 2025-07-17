@@ -35,10 +35,13 @@
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Cédula</mat-label>
-            <input matInput formControlName="cedula" required maxlength="9" />
+            <input matInput formControlName="cedula" required maxlength="9" (input)="onCedulaInput($event)"/>
             <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>badge</mat-icon>
             @if (form.get('cedula')?.hasError('required')) {
               <mat-error>La cédula es requerida</mat-error>
+            }
+            @if (form.get('cedula')?.hasError('pattern')) {
+              <mat-error>Debe contener 9 dígitos</mat-error>
             }
           </mat-form-field>
         </div>
@@ -82,14 +85,6 @@
           </mat-form-field>
         </div>
       </div>
-
-      <!-- Errores -->
-      <mat-error *ngIf="form.get('cedula')?.hasError('pattern')">
-        La cédula debe tener exactamente 9 dígitos.
-      </mat-error>
-
-      
-
 
 
       <div class="row">

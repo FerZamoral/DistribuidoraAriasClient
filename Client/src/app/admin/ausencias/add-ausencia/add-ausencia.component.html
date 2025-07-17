@@ -1,0 +1,107 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <app-breadcrumb
+        [title]="'Agregar Ausencia'"
+        [items]="['Ausencias']"
+        [active_item]="'Agregar Ausencia'">
+      </app-breadcrumb>
+    </div>
+
+    <div class="row clearfix">
+      <div class="col-xl-12">
+        <div class="card">
+          <div class="header">
+            <h2>Registrar Nueva Ausencia</h2>
+          </div>
+          <div class="body">
+            <form class="m-4" [formGroup]="form" (ngSubmit)="onSubmit()">
+              <!-- Empleado y Motivo -->
+              <div class="row">
+                <div class="col-xl-6 mb-3">
+                  <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label>Empleado</mat-label>
+                    <mat-select formControlName="empleadoId">   
+                      <mat-option *ngFor="let emp of empleados" [value]="emp.id">
+                        {{ emp.nombre }}
+                      </mat-option>
+                    </mat-select>
+                    <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>face</mat-icon>
+                    <mat-error *ngIf="form.get('empleadoId')?.hasError('required')">
+                      El empleado es obligatorio
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-6 mb-3">
+                  <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label>Motivo</mat-label>
+                    <input matInput formControlName="motivo" required />
+                    <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>info</mat-icon>
+                    <mat-error *ngIf="form.get('motivo')?.hasError('required')">
+                      El motivo es requerido
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <!-- Fechas -->
+              <div class="row">
+                <div class="col-xl-6 mb-3">
+                  <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label>Fecha Inicio</mat-label>
+                    <input matInput [matDatepicker]="picker1" formControlName="fechaInicio">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                    <mat-error *ngIf="form.get('fechaInicio')?.hasError('required')">
+                      La fecha de inicio es requerida
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-6 mb-3">
+                  <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label>Fecha Fin</mat-label>
+                    <input matInput [matDatepicker]="picker2" formControlName="fechaFin">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                    <mat-error *ngIf="form.get('fechaFin')?.hasError('required')">
+                      La fecha final es requerida
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <mat-error *ngIf="form.hasError('fechaInvalida')">
+                La fecha de inicio no puede ser posterior a la fecha fin
+              </mat-error>
+
+              <!-- Porcentaje salario -->
+              <div class="row">
+                <div class="col-xl-6 mb-3">
+                  <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label>Porcentaje Salario</mat-label>
+                    <input matInput type="number" formControlName="porcentajeSalario" />
+                    <mat-icon class="material-icons-outlined color-icon p-3" matSuffix>attach_money</mat-icon>
+                    <mat-error *ngIf="form.get('porcentajeSalario')?.hasError('required')">
+                      El porcentaje es requerido
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <!-- Botones -->
+              <div class="row">
+                <div class="col-xl-12">
+                  <button mat-flat-button color="primary" [disabled]="form.invalid">
+                    Guardar
+                  </button>
+                  <button mat-flat-button class="formCancelBtn" type="button" routerLink="/admin/ausencias/allAusencias">
+                    Cancelar
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
