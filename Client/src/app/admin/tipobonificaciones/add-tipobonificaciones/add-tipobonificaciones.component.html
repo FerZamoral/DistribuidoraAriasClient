@@ -1,0 +1,79 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <app-breadcrumb
+        [title]="'Agregar Tipo de Bonificación'"
+        [items]="['Bonificaciones']"
+        [active_item]="'Agregar Tipo'">
+      </app-breadcrumb>
+    </div>
+    <div class="row clearfix">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="header">
+            <h2>Agregar Tipo de Bonificación</h2>
+          </div>
+          <div class="body">
+            <form class="m-4" [formGroup]="docForm" (ngSubmit)="onSubmit()">
+              <!-- Nombre -->
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput formControlName="nombre" required />
+                    <mat-error *ngIf="docForm.get('nombre')?.hasError('required')">
+                      El nombre es obligatorio
+                    </mat-error>
+                    <mat-error *ngIf="docForm.get('nombre')?.hasError('minlength')">
+                      Mínimo 3 caracteres
+                    </mat-error>
+                    <mat-error *ngIf="docForm.get('nombre')?.hasError('maxlength')">
+                      Máximo 50 caracteres
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <!-- Descripción -->
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Descripción</mat-label>
+                    <textarea
+                      matInput
+                      formControlName="descripcion"
+                      placeholder="Descripción del tipo de bonificación"
+                      rows="4"
+                      required
+                    ></textarea>
+                    <mat-error *ngIf="docForm.get('descripcion')?.hasError('required')">
+                      La descripción es obligatoria
+                    </mat-error>
+                    <mat-error *ngIf="docForm.get('descripcion')?.hasError('minlength')">
+                      Mínimo 5 caracteres
+                    </mat-error>
+                    <mat-error *ngIf="docForm.get('descripcion')?.hasError('maxlength')">
+                      Máximo 250 caracteres
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <!-- Botones -->
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-3">
+                  <button mat-flat-button color="accent" [disabled]="docForm.invalid">
+                    Guardar
+                  </button>
+                 <button type="button" mat-flat-button class="formCancelBtn">
+                    Cancelar
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

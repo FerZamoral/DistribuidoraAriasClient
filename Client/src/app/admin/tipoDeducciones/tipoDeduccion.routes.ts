@@ -9,6 +9,7 @@ import { AllTipoDeduccionesComponent } from './alltipoDeducciones/alltipoDeducci
 // import { TipodeduccionProfileComponent } from './tipodeduccionProfile/tipodeduccionProfile.component';
 
 import { Page404Component } from '../../authentication/page404/page404.component';
+import { AddTipoDeduccionComponent } from './add-tipoDeducciones/add-tipoDeducciones.component';
 
 /**
  * Rutas del feature TipoDeducciones
@@ -22,6 +23,10 @@ export const ADMIN_TIPODEDUCCIONES_ROUTE: Route[] = [
     path: 'alltipodeducciones',
     component: AllTipoDeduccionesComponent,
   },
+    {
+      path: 'add-tipoDeducciones',
+      component: AddTipoDeduccionComponent,
+    },
   // { path: 'nuevo', component: AddTipodeduccionComponent },
   // { path: 'editar/:id', component: EditTipodeduccionComponent },
   // { path: ':id', component: TipodeduccionProfileComponent },

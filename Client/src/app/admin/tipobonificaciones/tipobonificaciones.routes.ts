@@ -10,6 +10,7 @@ import { AlltipobonificacionesComponent } from './allTipoBonificaciones/alltipoB
 //import { TipobonificacionProfileComponent } from './tipobonificacionProfile/tipobonificacionProfile.component';
 
 import { Page404Component } from '../../authentication/page404/page404.component';
+import { AddTipobonificacionComponent } from './add-tipobonificaciones/add-tipobonificaciones.component';
 
 /**
  * Rutas del feature Tipobonificaciones
@@ -23,4 +24,8 @@ export const ADMIN_TIPOBONIFICACIONES_ROUTE: Route[] = [
     path: 'alltipobonificaciones',
     component: AlltipobonificacionesComponent,
   },
+    {
+        path: 'add-tipobonificaciones',
+        component: AddTipobonificacionComponent,
+      },
 ];
