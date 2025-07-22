@@ -45,10 +45,10 @@ export class TipoDeduccionesService {
     );
   }
 /** DELETE: eliminar del backend */
-delete(id: number): Observable<void> {
-  return this.genericService.delete<void>(`${this.endpoint}/${id}`).pipe(
+delete(id: number): Observable<any> {
+  return this.genericService.delete(`${this.endpoint}`, id).pipe(
     catchError(err => {
-      console.error('Error eliminando tipo de deducción', err);
+      console.error('Error eliminando tipoDeduccion', err);
       return throwError(() => err);
     })
   );

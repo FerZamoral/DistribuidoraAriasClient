@@ -51,13 +51,14 @@ export class TipobonificacionesService {
     );
   }
 /** DELETE: eliminar del backend */
-delete(id: number): Observable<void> {
-  return this.genericService.delete<void>(`${this.endpoint}/${id}`).pipe(
+delete(id: number): Observable<any> {
+  return this.genericService.delete(`${this.endpoint}`, id).pipe(
     catchError(err => {
       console.error('Error eliminando tipobonificación', err);
       return throwError(() => err);
     })
   );
 }
+
 
 }
