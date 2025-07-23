@@ -248,7 +248,7 @@
   "submenu": [
     {
       "path": "/admin/tipodeducciones/alltipodeducciones",
-      "title": "Lista de Tipos",
+      "title": "Lista de Tipos de Deducciones",
       "iconType": "",
       "icon": "",
       "class": "ml-menu",
@@ -259,7 +259,7 @@
       "submenu": []
     },
     {
-      "path": "/admin/tipodeducciones/nuevo",
+      "path": "/admin/tipodeducciones/add-tipoDeducciones",
       "title": "Agregar Tipo",
       "iconType": "",
       "icon": "",
@@ -308,7 +308,7 @@
           "submenu": []
         },
         {
-          "path": "/admin/tipobonificaciones/nuevo",
+          "path": "/admin/tipobonificaciones/add-tipobonificaciones",
           "title": "Agregar Tipo",
           "iconType": "",
           "icon": "",

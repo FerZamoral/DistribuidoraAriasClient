@@ -59,7 +59,7 @@ export class AddTipoDeduccionComponent implements OnInit {
     this.TipoDeduccionesService.add(this.docForm.value).subscribe({
       next: () => {
         this.noti.mensaje('Éxito', 'Tipo de deducción agregado correctamente', TipoMessage.success);
-        this.router.navigate(['/admin/tipoDeducciones/allTipoDeducciones']);
+        this.router.navigate(['/admin/tipodeducciones/alltipodeducciones']);
       },
       error: err => {
         console.error('Error al agregar tipo de deducción:', err);

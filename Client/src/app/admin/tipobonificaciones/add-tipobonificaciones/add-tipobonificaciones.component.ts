@@ -60,7 +60,7 @@ export class AddTipobonificacionComponent implements OnInit {
     this.tipobonificacionesService.add(this.docForm.value).subscribe({
       next: () => {
         this.noti.mensaje('Éxito', 'Tipo de bonificación agregado correctamente', TipoMessage.success);
-        this.router.navigate(['/admin/tipobonificaciones/allTipobonificaciones']);
+        this.router.navigate(['/admin/tipobonificaciones/alltipobonificaciones']);
       },
       error: err => {
         console.error('Error al agregar tipo de bonificación:', err);
